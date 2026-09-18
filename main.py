@@ -1,9 +1,11 @@
 import random
 import csv
 import uuid
+from datetime import datetime
 
 mission = {
     "run_id": str(uuid.uuid4()),
+    "start_time": datetime.now().isoformat(),
     "day": 1,
     "crew": 6,
     "power": 100,
@@ -51,8 +53,16 @@ def advance_day(mission):
     # Reset power saving for the next day
     mission["power_saving"] = False
 
+    daily_metrics = {
+    "food_consumed": food_consumption,
+    "life_support_consumed": life_support_consumption,
+    "power_consumed": power_consumption
+}
+   
     # Move to the next day
     mission["day"] += 1
+
+    return daily_metrics
 
 
 def solar_storm(mission):
@@ -238,7 +248,7 @@ def random_event(mission):
         print("✅ No major event today")      
 
 
-def record_day(mission):
+def record_day(mission,food_consumed,life_support_consumed,power_consumed) :
 
     daily_record = {
         "run_id": mission["run_id"],
@@ -247,7 +257,13 @@ def record_day(mission):
         "power": mission["power"],
         "food": mission["food"],
         "life_support": mission["life_support"],
-        "shielding": mission["shielding"]
+        "shielding": mission["shielding"],
+
+        "power_consumed": power_consumed,
+        "food_consumed": food_consumed,
+        "life_support_consumed": life_support_consumed,
+
+        "status": mission["status"]
     }
 
     mission["history"].append(daily_record)   
@@ -287,7 +303,27 @@ def save_events(mission):
         writer = csv.DictWriter(file,fieldnames=fieldnames)
 
         writer.writeheader()
-        writer.writerows(mission["events"])                  
+        writer.writerows(mission["events"])  
+
+
+def save_runs(run_record):
+
+    with open("mission_runs.csv", "a", newline="") as file:
+
+        fieldnames = [
+            "run_id",
+            "start_time",
+            "final_day",
+            "crew",
+            "status"
+        ]
+
+        writer = csv.DictWriter(file,fieldnames=fieldnames)
+
+        if file.tell() == 0:
+            writer.writeheader()
+
+        writer.writerow(run_record)                        
 
 
 def record_event(mission, event_name, outcome):
@@ -325,6 +361,57 @@ def mission_summary(mission):
     print("=" * 40)    
 
 
+def record_mission_run(mission):
+
+    run_record = {
+        "run_id": mission["run_id"],
+        "start_time": mission["start_time"],
+        "final_day": mission["day"],
+        "crew": mission["crew"],
+        "status": mission["status"]
+    }
+
+    return run_record    
+
+
+def validate_mission_data(mission):
+
+    errors = []
+
+    if mission["power"] < 0:
+        errors.append("Power cannot be negative.")
+
+    if mission["food"] < 0:
+        errors.append("Food cannot be negative.")
+
+    if mission["life_support"] < 0:
+        errors.append("Life support cannot be negative.")
+
+    if mission["shielding"] < 0:
+        errors.append("Shielding cannot be negative.")
+
+    if mission["crew"] <= 0:
+        errors.append("Crew must be greater than zero.")
+
+    if mission["day"] < 1:
+        errors.append("Day must be greater than zero.")
+
+    valid_statuses = ["RUNNING", "COMPLETED", "FAILED"]
+
+    if mission["status"] not in valid_statuses:
+        errors.append("Invalid mission status.")
+
+    if errors:
+        print("\n⚠️ Data Quality Issues:")
+
+        for error in errors:
+            print(f"- {error}")
+
+        return False
+
+    return True
+
+
 mission_completed = False
 
 while mission["day"] <= 30:
@@ -336,14 +423,16 @@ while mission["day"] <= 30:
     player_action(mission)
 
     # 3. Check if the action caused a problem
-    if not check_mission_status(mission):
+    if not validate_mission_data(mission):
+        mission["status"] = "FAILED"
         break
 
     # 4. Random event
     random_event(mission)
 
     # 5. Check again after the event
-    if not check_mission_status(mission):
+    if not validate_mission_data(mission):
+        mission["status"] = "FAILED"
         break
 
     record_day(mission)
@@ -374,6 +463,9 @@ else:
 
 save_history(mission)
 save_events(mission)
+
+run_record = record_mission_run(mission)
+save_runs(run_record)
 
 print("\nMission data saved successfully")
 
