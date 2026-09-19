@@ -1,4 +1,10 @@
-run_id,day,crew,power,food,life_support,shielding
-db825570-df12-47aa-a962-17801c5f77fc,1,6,85,80,77,50
-db825570-df12-47aa-a962-17801c5f77fc,2,6,70,68,71,60
-db825570-df12-47aa-a962-17801c5f77fc,3,6,55,56,65,70
+run_id,day,crew,power,food,life_support,shielding,power_consumed,food_consumed,life_support_consumed,status
+8432bc8f-a403-4c01-abe3-c2be9f481248,1,6,85,68,74,50,5,12,6,RUNNING
+8432bc8f-a403-4c01-abe3-c2be9f481248,2,6,70,56,68,60,5,12,6,RUNNING
+8432bc8f-a403-4c01-abe3-c2be9f481248,3,6,65,64,62,60,5,12,6,RUNNING
+8432bc8f-a403-4c01-abe3-c2be9f481248,4,6,55,52,63.0,60,5,12,6,RUNNING
+8432bc8f-a403-4c01-abe3-c2be9f481248,5,6,45,40,56.0,70,5,12,6,RUNNING
+8432bc8f-a403-4c01-abe3-c2be9f481248,6,6,30,28,60.0,70,5,12,6,RUNNING
+8432bc8f-a403-4c01-abe3-c2be9f481248,7,6,27,16,54.0,70,3,12,6,RUNNING
+8432bc8f-a403-4c01-abe3-c2be9f481248,8,6,24,4,48.0,70,3,12,6,RUNNING
+8432bc8f-a403-4c01-abe3-c2be9f481248,9,6,21,0,42.0,70,3,12,6,RUNNING
