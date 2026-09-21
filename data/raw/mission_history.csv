@@ -1,0 +1,8 @@
+run_id,day,crew,power,food,life_support,shielding,power_consumed,power_saved,food_consumed,life_support_consumed,status
+073e6f54-a404-49c9-945c-fabce7b071b6,1,6,85,68,64,60,5,0,12,6,RUNNING
+073e6f54-a404-49c9-945c-fabce7b071b6,2,6,75,56,65.0,60,5,0,12,6,RUNNING
+073e6f54-a404-49c9-945c-fabce7b071b6,3,6,60,64,59.0,60,5,0,12,6,RUNNING
+073e6f54-a404-49c9-945c-fabce7b071b6,4,6,40,52,50.0,70,5,0,12,6,RUNNING
+073e6f54-a404-49c9-945c-fabce7b071b6,5,6,25,40,54.0,70,5,0,12,6,RUNNING
+073e6f54-a404-49c9-945c-fabce7b071b6,6,6,10,28,48.0,80,5,0,12,6,RUNNING
+073e6f54-a404-49c9-945c-fabce7b071b6,7,6,0,16,48.0,80,5,0,12,6,FAILED

@@ -1,3 +1,4 @@
 run_id,day,event,outcome
-8432bc8f-a403-4c01-abe3-c2be9f481248,4,Solar Storm,Non-essential systems shut down
-8432bc8f-a403-4c01-abe3-c2be9f481248,5,Solar Storm,Non-essential systems shut down
+a5d6667d-c123-48f5-8b53-7f8f921053a4,2,Solar Storm,Non-essential systems shut down
+a5d6667d-c123-48f5-8b53-7f8f921053a4,6,Equipment Failure,Equipment repaired immediately
+a5d6667d-c123-48f5-8b53-7f8f921053a4,9,Equipment Failure,Backup system activated

@@ -1,0 +1,4 @@
+run_id,day,event,outcome
+073e6f54-a404-49c9-945c-fabce7b071b6,2,Solar Storm,Non-essential systems shut down
+073e6f54-a404-49c9-945c-fabce7b071b6,4,Equipment Failure,Backup system activated
+073e6f54-a404-49c9-945c-fabce7b071b6,7,Solar Storm,No action taken

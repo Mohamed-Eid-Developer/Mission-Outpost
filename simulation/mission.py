@@ -34,20 +34,26 @@ def advance_day(mission):
 
     # Power consumption
     power_consumption = 5
+    power_saved = 0
 
     if mission["power_saving"]:
-        power_consumption = 3    
+        power_consumption = 3
+        power_saved = 5 - 3
+    else:
+        power_consumption = 5
 
     mission["power"] = max(0,mission["power"] - power_consumption) 
 
     # Reset power saving for the next day
     mission["power_saving"] = False
 
+
     daily_metrics = {
     "day": current_day,     
     "food_consumed": food_consumption,
     "life_support_consumed": life_support_consumption,
-    "power_consumed": power_consumption
+    "power_consumed": power_consumption,
+    "power_saved": power_saved 
 }
    
     # Move to the next day
