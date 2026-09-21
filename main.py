@@ -27,10 +27,8 @@ from storage.logger import (
 
 
 mission = create_mission()
-
-
-
 mission_completed = False
+
 
 while mission["day"] <= 30:
 
