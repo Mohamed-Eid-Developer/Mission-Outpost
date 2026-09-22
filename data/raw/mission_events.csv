@@ -1,4 +1,6 @@
 run_id,day,event,outcome
-073e6f54-a404-49c9-945c-fabce7b071b6,2,Solar Storm,Non-essential systems shut down
-073e6f54-a404-49c9-945c-fabce7b071b6,4,Equipment Failure,Backup system activated
-073e6f54-a404-49c9-945c-fabce7b071b6,7,Solar Storm,No action taken
+ef914005-4f0f-4c81-8eae-60470d794d69,6,Solar Storm,Non-essential systems shut down
+ef914005-4f0f-4c81-8eae-60470d794d69,7,Equipment Failure,Backup system activated
+ef914005-4f0f-4c81-8eae-60470d794d69,8,Solar Storm,Emergency shielding failed - insufficient power
+ef914005-4f0f-4c81-8eae-60470d794d69,9,Solar Storm,Non-essential systems shut down
+ef914005-4f0f-4c81-8eae-60470d794d69,10,Equipment Failure,Repair delayed
