@@ -46,16 +46,17 @@ def solar_storm(mission):
 
     elif choice == "2":
 
-        mission["power"] += 5
+        power_saved = 5
 
         radiation_damage = 15 - mission["shielding"] * 0.2
         radiation_damage = max(0, radiation_damage)
 
         mission["life_support"] = max(0,mission["life_support"] - radiation_damage)
 
-        print("⚡ Non-essential systems shut down")
-        print("Power was conserved.")
+        print("⚡ Non-essential systems shut down.")
+        print(f"Power consumption reduced by {power_saved}.")
         print(f"Radiation impact: {radiation_damage:.1f}")
+
         record_event(mission,"Solar Storm","Non-essential systems shut down")
 
     elif choice == "3":
