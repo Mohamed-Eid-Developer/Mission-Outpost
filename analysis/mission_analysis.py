@@ -87,7 +87,6 @@ def find_lowest_resources(df):
 
 
 
-
 if __name__ == "__main__":
 
     df = load_processed_data()
