@@ -23,7 +23,9 @@ from storage.logger import (
     record_mission_run,
     mission_summary
 )
-
+from analysis.mission_analysis import(
+    calculate_mission_metrics
+)
 
 
 mission = create_mission()

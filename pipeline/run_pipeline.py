@@ -1,6 +1,7 @@
 from extract import extract_mission_history
 from transform import transform_mission_history
 from load import load_processed_data
+from quality import validate_mission_data
 
 
 def run_pipeline():
@@ -13,11 +14,18 @@ def run_pipeline():
 
     print(f"Rows extracted: {len(df)}")
 
+    # Data Quality
+    print("\n🔎 Checking data quality...")
+
+    if not validate_mission_data(df):
+        print("\n🛑 Pipeline stopped because data quality checks failed.")
+        return
+
     # Transform
     print("\n🔄 Transforming data...")
     transformed_df = transform_mission_history(df)
 
-    print("Transformation completed.")
+    print("Transformation completed")
 
     # Load
     print("\n📤 Loading processed data...")
