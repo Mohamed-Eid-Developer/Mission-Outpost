@@ -1,7 +1,15 @@
 import pandas as pd
 import plotly.express as px
 import streamlit as st
+from pathlib import Path
+import sys
 
+BASE_DIR = Path(__file__).resolve().parent.parent
+
+if str(BASE_DIR) not in sys.path:
+    sys.path.insert(0, str(BASE_DIR))
+    
+from database.connection import get_connection
 
 # -----------------------------
 # Page Configuration
@@ -20,18 +28,36 @@ st.set_page_config(
 
 @st.cache_data
 def load_mission_data():
+    connection = get_connection()
 
-    file_path = "data/processed/mission_daily_metrics.csv"
+    query = """
+        SELECT *
+        FROM mission_daily_metrics
+        ORDER BY run_id, day
+    """
 
-    return pd.read_csv(file_path)
+    df = pd.read_sql(query, connection)
+
+    connection.close()
+
+    return df
 
 
 @st.cache_data
 def load_events():
+    connection = get_connection()
 
-    file_path = "data/raw/mission_events.csv"
+    query = """
+        SELECT *
+        FROM mission_events
+        ORDER BY run_id, day
+    """
 
-    return pd.read_csv(file_path)
+    df = pd.read_sql(query, connection)
+
+    connection.close()
+
+    return df
 
 
 df = load_mission_data()

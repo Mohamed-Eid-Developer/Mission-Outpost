@@ -1,4 +1,4 @@
-from connection import get_connection
+from database.connection import get_connection
 
 
 try:
@@ -7,6 +7,8 @@ try:
     print("✅ Connected to SQL Server successfully!")
 
     connection.close()
+
+    print("Connection closed")
 
 except Exception as error:
     print("❌ Connection failed:")
