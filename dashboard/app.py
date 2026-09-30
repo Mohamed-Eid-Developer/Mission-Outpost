@@ -3,13 +3,15 @@ import plotly.express as px
 import streamlit as st
 from pathlib import Path
 import sys
-
 BASE_DIR = Path(__file__).resolve().parent.parent
-
 if str(BASE_DIR) not in sys.path:
-    sys.path.insert(0, str(BASE_DIR))
-    
+    sys.path.insert(0, str(BASE_DIR))    
 from database.connection import get_connection
+from database.queries import(
+    get_mission_runs,
+    get_daily_metrics,
+    get_mission_events
+)
 
 # -----------------------------
 # Page Configuration
@@ -19,6 +21,14 @@ st.set_page_config(
     page_title="Mission Outpost",
     page_icon="🚀",
     layout="wide"
+)
+
+st.title("🚀 Mission Outpost")
+st.subheader("Mission Analytics Dashboard")
+
+st.write(
+    "Monitor mission resources, consumption, "
+    "events and mission performance."
 )
 
 
@@ -62,7 +72,6 @@ def load_events():
 
 df = load_mission_data()
 events_df = load_events()
-
 
 # -----------------------------
 # Header
